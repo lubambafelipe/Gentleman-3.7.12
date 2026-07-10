@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 *,
 *::after,
 *::before {
@@ -316,8 +316,8 @@ ul {
   text-align: left;
   top: 100%;
   left: 0;
-  -webkit-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
+  -webkit-transition: max-height 0.5s ease-out, visibility 0.5s ease-out;
+  transition: max-height 0.5s ease-out, visibility 0.5s ease-out;
   overflow: hidden;
   z-index: 9999;
   border-radius: 3px;
@@ -782,7 +782,7 @@ button,
 img,
 input,
 span {
-  transition: all 0.3s ease 0s;
+  transition: color 0.3s ease 0s, background-color 0.3s ease 0s, border-color 0.3s ease 0s, opacity 0.3s ease 0s;
 }
 
 *:focus {
@@ -1020,9 +1020,76 @@ h6 {
     display: inline-block;
   }
 }
+.logo a img {
+  max-height: 60px;
+  width: auto;
+}
 @media only screen and (max-width: 767px) {
   .logo a img {
     max-width: 110px;
+    max-height: 48px;
+  }
+}
+
+/* ===== Logo: ícone + nome lado a lado ===== */
+.logo_lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.logo_lockup .logo_icon {
+  height: 52px;
+  width: auto;
+  max-height: 52px;
+  flex-shrink: 0;
+}
+.logo_lockup .logo_text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.logo_lockup .logo_text strong {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #d4a94c;
+}
+.logo_lockup .logo_text small {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: #ffffff;
+  opacity: 0.75;
+}
+.sticky-header.sticky .logo_lockup .logo_icon {
+  height: 40px;
+  max-height: 40px;
+}
+.sticky-header.sticky .logo_lockup .logo_text strong {
+  font-size: 16px;
+}
+.sticky-header.sticky .logo_lockup .logo_text small {
+  font-size: 9px;
+}
+@media only screen and (max-width: 991px) {
+  .logo_lockup {
+    gap: 10px;
+  }
+  .logo_lockup .logo_icon {
+    height: 42px;
+    max-height: 42px;
+  }
+  .logo_lockup .logo_text strong {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  .logo_lockup .logo_text small {
+    font-size: 9px;
+    letter-spacing: 2px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1301,6 +1368,7 @@ h6 {
   height: 100vh;
   min-height: 600px;
 }
+
 @media only screen and (max-width: 767px) {
   .slider_section2 {
     margin-bottom: 56px;
@@ -1615,11 +1683,31 @@ h6 {
   color: #fff !important;
 }
 .single_slider {
+  position: relative;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
   height: 910px;
+}
+
+/* Personagem recortado (imagem sem a margem preta), ocupando o espaço vazio à esquerda */
+/* Ajuste "left" para mover na horizontal, e "height" para o tamanho */
+.slider_character {
+  position: absolute;
+  left: 4%;
+  bottom: 0;
+  height: 88%;
+  width: auto;
+  max-width: 45%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 991px) {
+  .slider_character {
+    display: none; /* some em telas menores, onde não há espaço à esquerda */
+  }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .single_slider {
@@ -1892,7 +1980,7 @@ h6 {
   z-index: 2;
   opacity: 0;
   pointer-events: none;
-  transition: ease 0.3s all;
+  transition: opacity 0.3s ease;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1907,7 +1995,7 @@ figure {
 }
 
 .action_links {
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   position: absolute;
   left: 10px;
   top: 10px;
@@ -1933,7 +2021,7 @@ figure {
   border: 1px solid #000000;
   color: #000000;
   display: block;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   transform: translateX(-60px);
 }
 .action_links ul li a:hover {
@@ -1951,13 +2039,13 @@ figure {
 }
 
 .action_links ul li.wishlist a {
-  transition: ease 0.5s all;
+  transition: transform 0.5s ease;
 }
 .action_links ul li.compare a {
-  transition: ease 0.7s all;
+  transition: transform 0.7s ease;
 }
 .action_links ul li.quick_button a {
-  transition: ease 0.9s all;
+  transition: transform 0.9s ease;
 }
 
 .product_content {
@@ -2081,7 +2169,7 @@ figure {
   left: 0;
   right: 0;
   margin: auto;
-  transition: all 300ms ease;
+  transition: width 300ms ease, height 300ms ease;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -2098,7 +2186,7 @@ figure {
   left: 0;
   right: 0;
   margin: auto;
-  transition: all 300ms ease;
+  transition: width 300ms ease, height 300ms ease;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -2143,7 +2231,7 @@ figure {
     line-height: 20px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 99px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .banner_content h3 {
     font-size: 14px;
     line-height: 16px;
@@ -2172,7 +2260,7 @@ figure {
     line-height: 50px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 99px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .banner_content h2 {
     font-size: 30px;
     line-height: 30px;
@@ -2193,7 +2281,7 @@ figure {
   font-weight: 700;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 99px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .banner_content p {
     font-size: 15px;
   }
@@ -2267,7 +2355,7 @@ figure {
   }
 }
 
-@media only screen and (ma-width: 767px) {
+@media only screen and (max-width: 767px) {
   .deals_product_area {
     margin-bottom: 58px;
   }
@@ -2375,7 +2463,7 @@ figure {
   color: #f6692a;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 119px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
   .countdown_number {
     line-height: 22px;
     font-size: 13px;
@@ -2657,7 +2745,7 @@ figure {
   padding: 0 20px;
   background: #fff;
   font-size: 13px;
-  font-weight: 70;
+  font-weight: 700;
   text-transform: uppercase;
   line-height: 52px;
   height: 52px;
@@ -3247,7 +3335,7 @@ figure {
   background: #f6692a;
   border-color: #f6692a;
   color: #000000;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   font-weight: 700;
 }
 
@@ -3360,4 +3448,27 @@ figure {
   border: 0;
   height: 30px;
   line-height: 29px;
+}
+/* ===== Ajustes para os links âncora do menu (Início, Perfumes, Chinelos, Shishas, Sobre, Contato) ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa o cabeçalho fixo/sticky para o topo da seção não ficar escondido atrás do menu */
+#perfumes,
+#chinelos,
+#shishas,
+#sobre,
+#contato {
+  scroll-margin-top: 110px;
+}
+
+@media only screen and (max-width: 991px) {
+  #perfumes,
+  #chinelos,
+  #shishas,
+  #sobre,
+  #contato {
+    scroll-margin-top: 20px;
+  }
 }
