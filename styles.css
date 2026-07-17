@@ -2198,6 +2198,7 @@ figure {
 }
 
 .banner_thumb a img {
+  width: 100%;
   transition: 0.3s;
 }
 
