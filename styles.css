@@ -1670,7 +1670,12 @@ h6 {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .slider_content2 p {
-    line-height: 10px;
+    line-height: 20px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .slider_content2 p {
+    max-width: 100%;
   }
 }
 
@@ -2149,6 +2154,14 @@ figure {
   overflow: hidden;
 }
 
+.banner_thumb a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: 0.3s;
+}
+
 .banner_thumb:hover::before {
   width: 90%;
 }
@@ -2193,17 +2206,6 @@ figure {
 
 @media only screen and (max-width: 767px) {
   .banner_thumb a {
-    width: 100%;
-  }
-}
-
-.banner_thumb a img {
-  width: 100%;
-  transition: 0.3s;
-}
-
-@media only screen and (max-width: 767px) {
-  .banner_thumb a img {
     width: 100%;
   }
 }
